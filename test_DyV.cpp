@@ -1,17 +1,13 @@
 #include "DyV.h"
 #include <vector>
 #include <iostream>
-#include<chrono>
+#include<chrono> //para medir el tiempo que tarda Quicksort en ordenar un array, en este caso para un array de enteros 
 
 using namespace std;
-//método para imprimir los elementos del array
+//para imprimir los elementos del array
 template <typename T>
-void printVec(const std::vector<T>& vec) {
-    for (const auto& elem : vec) {
-        std::cout << elem << " ";
-    }
-    std::cout << std::endl;
-}
+void printVec(const std::vector<T>& vec);
+
 int main(){
 	//vectores para BúsquedaBinaria
 	vector<int> a{1,4,6,9};
@@ -73,5 +69,12 @@ int main(){
     	printVec(doubleVec);
 	return 0;
 }
-
+//método para imprimir los elementos del array
+template <typename T>
+void printVec(const std::vector<T>& vec) {
+    for (const auto& elem : vec) {
+        std::cout << elem << " ";
+    }
+    std::cout << std::endl;
+}
 
