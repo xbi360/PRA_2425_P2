@@ -1,22 +1,27 @@
 #include "DyV.h"
 #include <vector>
 #include <iostream>
+#include<chrono>
 
 using namespace std;
-
+//método para imprimir los elementos del array
+template <typename T>
+void printVec(const std::vector<T>& vec) {
+    for (const auto& elem : vec) {
+        std::cout << elem << " ";
+    }
+    std::cout << std::endl;
+}
 int main(){
+	//vectores para BúsquedaBinaria
 	vector<int> a{1,4,6,9};
 	vector<float> b{1.5,2.6,3.8,5.0};
 	vector<double> c{1.7,4.5,8.9,10.1};
-	
-	//iniciar busqueda para vector de enteros
 	int posin=BusquedaBinaria(a,4,0,a.size()-1);//buscamos el 4
-	//iniciar busqueda para vector de floats
 	int posf=BusquedaBinaria(b,2.6f,0,b.size()-1);//buscamos el 2.6
-	//iniciar busqueda para vector de doubles
 	int posd=BusquedaBinaria(c,10.0,0,c.size()-1);//buscamos el 10.0
 	
-	if(posin!=-1){//si se encuentra el elemento
+	if(posin!=-1){
 	cout<<"Posición del elemento buscado del array de ints: "<<posin<<endl;
 	}else{
 		cout<<"No se ha encontrado elemento busacado del array de ints"<<endl;
@@ -34,5 +39,39 @@ int main(){
 	}else{
 		cout<<"No se ha encontrado elemento buscado del array de doubles"<<endl;
 	}
+
+	std::cout<<endl;
+	//QUICKSORT
+	//vector de enteros
+	std::vector<int> intVec = {10, 7, 8, 9, 1, 5};
+	std::cout << "Array de enteros original: ";
+    	printVec(intVec);
+	auto start = std::chrono::system_clock::now();
+	quicksort(intVec, 0, intVec.size() - 1);
+	auto end = std::chrono::system_clock::now();
+	std::chrono::duration<float, std::milli> duration = end - start;
+    	std::cout << "Array de enteros ordenado: ";
+    	printVec(intVec);
+	std::cout << " Time: " << duration.count() <<" s "<< std::endl;
+  	
+	std::cout<<endl;	
+	//vector de flotantes
+	std::vector<float> floatVec = {3.1, 2.4, 5.6, 1.2, 4.8};
+    	std::cout << "Array de flotantes original: ";
+    	printVec(floatVec);
+    	quicksort(floatVec, 0, floatVec.size() - 1);
+    	std::cout << "Array de flotantes ordenado: ";
+    	printVec(floatVec);
+	
+	std::cout<<endl;
+	//vector de doubles
+    	std::vector<double> doubleVec = {3.14, 2.71, 1.41, 1.62, 4.67};
+    	std::cout << "Array de dobles original: ";
+    	printVec(doubleVec);
+    	quicksort(doubleVec, 0, doubleVec.size() - 1);
+    	std::cout << "Array de dobles ordenado: ";
+    	printVec(doubleVec);
 	return 0;
 }
+
+
